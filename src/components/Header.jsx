@@ -7,15 +7,18 @@ import arrow from '../images/svg/arrow-right-solid.svg'
 const BqHeader = styled.header`
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    padding: 10px;
 `
 const TitleDiv = styled.div`
     display: flex;
     align-items: center;
     margin-left: 25px;
+    
 `
 const Logo = styled.img`
     height: 60px;
-    padding: 8px;
+    margin: 8px;
 `
 const Title = styled.h1`
     font-size: 40px;
@@ -47,8 +50,6 @@ export default function Header () {
                 <ArrowImg src={arrow}/>
             </TitleDiv>
             <Separator/>
-
-            
         </BqHeader>
     )
 }
