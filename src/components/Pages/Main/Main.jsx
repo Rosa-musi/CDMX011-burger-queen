@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 import MainButton from '../Main/components/MainButton'
-import ListIcon from '../../../../images/svg/clipboard-list-solid.svg'
-import KitchenIcon from '../../../../images/svg/store-solid.svg'
+import ListIcon from '../../../images/svg/clipboard-list-solid.svg'
+import KitchenIcon from '../../../images/svg/store-solid.svg'
 
-const MainDiv = styled.div`
+const MainDiv = styled.main`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 20%;
-    height: 100%;
+    margin-top: 25vh;
+    height: fit-content;
     width: 95%;
 `
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import colors from '../styles/colors'
 
 const FooterTag = styled.footer`
     display: flex;
@@ -21,14 +22,14 @@ const OuterSquare = styled.div`
 const YellowLine = styled.span`
     width: 100%;
     height: 2px;
-    border-top: solid 2px #F2CB05;
+    border-top: solid 2px ${colors.yellow};
     margin: auto;
 `
 
 const OrangeLine = styled.div`
     width: 100%;
     height: 2px;
-    border-top: solid 2px #F57615;
+    border-top: solid 2px ${colors.orange};
     margin: auto;
 `
 
