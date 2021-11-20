@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import MainButton from '../Main/components/MainButton'
 import ListIcon from '../../../images/svg/clipboard-list-solid.svg'
 import KitchenIcon from '../../../images/svg/store-solid.svg'
+
 
 const MainDiv = styled.main`
     display: flex;
@@ -18,8 +20,8 @@ const MainDiv = styled.main`
 export default function Main () {
     return(
         <MainDiv>
-            <a href="/"><MainButton title="Order" icon={ListIcon}/></a>
-            <MainButton title="Kitchen" icon={KitchenIcon}/>
+            <Link to="/takeOrder"><MainButton title="Order" icon={ListIcon}/></Link>
+            <Link to="/kitchenList"><MainButton title="Kitchen" icon={KitchenIcon}/></Link>
         </MainDiv>
     )
 }

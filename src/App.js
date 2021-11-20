@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Link
 } from "react-router-dom";
 import { OrderProvider } from './context/OrderContext';
 
@@ -12,6 +11,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Main from './components/Pages/Main/Main'
 import TakeOrder from './components/Pages/TakeOrder/TakeOrder'
+import KitchenList from './components/Pages/KitchenList/KitchenList';
 
 
 const Page = styled.body`
@@ -22,17 +22,21 @@ const Page = styled.body`
 
 function App() {
   return (
+    <>
     <Router>
       <OrderProvider>
         <Page>
           <Header/>
-          {/* <Main/> */}
-          <TakeOrder/>
+          <Routes>
+            <Route path="/" element={<Main/>} />
+            <Route path="/takeOrder" element={<TakeOrder/>} />
+            <Route path="/kitchenList" element={<KitchenList/>}/>
+          </Routes>
           <Footer/>
         </Page>
       </OrderProvider>
     </Router>
-    
+    </>
   );
 }
 
