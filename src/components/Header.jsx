@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import colors from '../styles/colors'
 import Button from './Pages/Button/Button'
@@ -91,7 +92,7 @@ export default function Header () {
         <BqHeader>
             <MainHeader>
                 <TitleDiv>
-                    <Logo src={icon}/>
+                    <Link to="/"><Logo src={icon}/></Link>
                     <Title><CapLetTitle>B</CapLetTitle>urger <CapLetTitle>Q</CapLetTitle>ueen</Title>
                     <ArrowImg src={arrow}/>
                 </TitleDiv>
