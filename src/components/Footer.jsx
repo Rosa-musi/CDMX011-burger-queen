@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+
 import colors from '../styles/colors'
+import Button from '../components/Pages/Button/Button'
+import { orderContext } from '../context/OrderContext'
 
 const FooterTag = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
     height: fit-content;
+    width: 100%;
 `
 
 const OuterSquare = styled.div`
@@ -16,7 +21,6 @@ const OuterSquare = styled.div`
     width: 95%;
     height: 20px;
     border: solid black 3px;
-    margin: auto;
 `
 
 const YellowLine = styled.span`
@@ -33,20 +37,44 @@ const OrangeLine = styled.div`
     margin: auto;
 `
 
+
+const FooterContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin: 13px;
+`
 const Rights = styled.p`
     font-size: 15px;
     padding: 10px;
-
 `
 
 export default function Footer() {
+
+    const { waiter, setWaiter } = useContext(orderContext)
+
+    function resetWaiter () {
+        prompt("hellol")
+        setWaiter("")
+    }
+
     return(
         <FooterTag>
             <OuterSquare>
                 <OrangeLine/>
                 <YellowLine/>
             </OuterSquare>
-            <Rights>All rights reserved - made by Rosa Arellano</Rights>
+            <FooterContent>
+                <Rights>All rights reserved</Rights>
+                <Link 
+                    to="/takeOrder" 
+                    style={{display: waiter === "" ? "none" : "flex"}}
+                    onClick={()=>{setWaiter("")}}
+                >
+                    <Button title="log out"/>
+                </Link>
+            </FooterContent>
         </FooterTag>
        
     )

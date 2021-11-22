@@ -8,6 +8,7 @@ import { orderContext } from '../../../context/OrderContext'
 const Main = styled.main`
     display: flex;
     width: 95%;
+    padding-top: 10%;
 `
 const InputDiv = styled.div`
     display: flex;
@@ -61,6 +62,11 @@ const CustomersName = styled.p`
     font-weight: bold;
     margin: 20px 0 30%;
 `
+const ButtonsDiv = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+`
 
 export default function TakeOrder () {
 
@@ -85,7 +91,7 @@ export default function TakeOrder () {
             <InputDiv>
                 <Title>Create order</Title>
                 <OptionsDiv> 
-                    <Label for="waiter">Waiter
+                    <Label htmlFor="waiter">Waiter
                         <SelectWaiter name="waiter" id="waiter" onChange={handleChangeWaiter} value={waiter}>
                             <option value="Juan">Juan</option>
                             <option value="Rosa">Rosa</option>
@@ -93,14 +99,18 @@ export default function TakeOrder () {
                             <option value="Felipe">Felipe</option>
                         </SelectWaiter>
                     </Label> 
-                    <Label for="cName">Customer's name
+                    <Label htmlFor="cName">Customer's name
                         <InputCustomer type="text" id="cName" value={customer} onChange={handleChangeCustomer}/>
                     </Label>
                 </OptionsDiv>
             </InputDiv>
             <DataDiv>
+                <Title>Customer's name:</Title>
                 <CustomersName>{customer}</CustomersName>
-                <Button title="create"/>
+                <ButtonsDiv>
+                    <Button title="create"/>
+                    <Button title="delete"/>
+                </ButtonsDiv>
             </DataDiv>
         </Main>
     )
