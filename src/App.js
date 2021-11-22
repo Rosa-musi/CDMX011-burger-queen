@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Main from './components/Pages/Main/Main'
 import TakeOrder from './components/Pages/TakeOrder/TakeOrder'
 import KitchenList from './components/Pages/KitchenList/KitchenList';
+import WaiterOrders from './components/Pages/WaiterOrders/WaiterOrders';
 
 
 const Page = styled.body`
@@ -30,7 +31,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Main/>} />
             <Route path="/takeOrder" element={<TakeOrder/>} />
+            <Route path="/orders" element={<WaiterOrders/>}/>
             <Route path="/kitchenList" element={<KitchenList/>}/>
+            
           </Routes>
           <Footer/>
         </Page>

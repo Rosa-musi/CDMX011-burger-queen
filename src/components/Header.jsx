@@ -104,7 +104,7 @@ export default function Header () {
                         <WaiterName>{waiter}</WaiterName>
                     </WaiterNameDiv>
                     <ButtonsDiv>
-                        <Button title="orders"/>
+                        <Link to="/orders"><Button title="orders"/></Link>
                         <Button title="menu"></Button>
                     </ButtonsDiv>
                 </MenuDiv>
