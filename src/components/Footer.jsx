@@ -52,12 +52,7 @@ const Rights = styled.p`
 
 export default function Footer() {
 
-    const { waiter, setWaiter } = useContext(orderContext)
-
-    function resetWaiter () {
-        prompt("hellol")
-        setWaiter("")
-    }
+    const { waiter, setWaiter, setCustomer } = useContext(orderContext)
 
     return(
         <FooterTag>
@@ -70,7 +65,10 @@ export default function Footer() {
                 <Link 
                     to="/takeOrder" 
                     style={{display: waiter === "" ? "none" : "flex"}}
-                    onClick={()=>{setWaiter("")}}
+                    onClick={()=>{
+                        setWaiter("")
+                        setCustomer("")
+                    }}
                 >
                     <Button title="log out"/>
                 </Link>

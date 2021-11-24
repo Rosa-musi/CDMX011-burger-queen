@@ -10,10 +10,17 @@ export const OrderProvider = (props) => {
     // Customer's name
     const [customer, setCustomer] = useState("");
 
+    // Handle menu (Lunch or breakfast)
+    const [lunch, setLunch] = useState("");
+    const [breakfast, setBreakfast] = useState("")
+
+    // Order items
+    const [orderItems, setOrderItems] = useState(["coca", "papas"])
+
     console.log(waiter)
   
     return (
-        <orderContext.Provider value={{waiter, setWaiter,customer, setCustomer}}>
+        <orderContext.Provider value={{waiter, setWaiter,customer, setCustomer, breakfast, setBreakfast, lunch, setLunch, orderItems, setOrderItems}}>
             {props.children}
         </orderContext.Provider>
     )
