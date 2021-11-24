@@ -87,7 +87,7 @@ const Separator = styled.span`
 export default function Header () {
 
     const { waiter, setWaiter } = useContext(orderContext)
-
+   console.log(window.location)
     return (
         <BqHeader>
             <MainHeader>
@@ -105,7 +105,8 @@ export default function Header () {
                     </WaiterNameDiv>
                     <ButtonsDiv>
                         <Link to="/orders"><Button title="orders"/></Link>
-                        <Button title="menu"></Button>
+                        <Link to="/menu"  /* style={{visibility: window.location.href === window.location.origin + "/orders" ? 'visible' : 'hidden' } }*/
+                        ><Button title="menu"/></Link> 
                     </ButtonsDiv>
                 </MenuDiv>
             </MainHeader>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import Button from '../Button/Button'
 import colors from '../../../styles/colors'
@@ -86,6 +87,12 @@ export default function TakeOrder () {
         )
     }
 
+    function goToMenu () {
+        if (waiter == "" || customer == ""){
+            alert("Enter waiter and customer's name please")
+        } 
+    }
+
     return (
         <Main>
             <InputDiv>
@@ -108,8 +115,13 @@ export default function TakeOrder () {
                 <Title>Customer's name:</Title>
                 <CustomersName>{customer}</CustomersName>
                 <ButtonsDiv>
-                    <Button title="create"/>
-                    <Button title="delete"/>
+                    <Link 
+                        to={waiter == "" || customer == "" ? "/takeOrder" : "/menu"}
+                        onClick={goToMenu}
+                    >
+                        <Button title="create"/>
+                    </Link>
+                    <Link to="/takeOrder"><Button title="delete"/></Link>
                 </ButtonsDiv>
             </DataDiv>
         </Main>

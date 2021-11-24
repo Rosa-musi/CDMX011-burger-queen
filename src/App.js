@@ -13,6 +13,7 @@ import Main from './components/Pages/Main/Main'
 import TakeOrder from './components/Pages/TakeOrder/TakeOrder'
 import KitchenList from './components/Pages/KitchenList/KitchenList';
 import WaiterOrders from './components/Pages/WaiterOrders/WaiterOrders';
+import Menu from './components/Pages/Menu/Menu'
 
 
 const Page = styled.body`
@@ -32,8 +33,8 @@ function App() {
             <Route path="/" element={<Main/>} />
             <Route path="/takeOrder" element={<TakeOrder/>} />
             <Route path="/orders" element={<WaiterOrders/>}/>
+            <Route path="/menu" element={<Menu/>}/>
             <Route path="/kitchenList" element={<KitchenList/>}/>
-            
           </Routes>
           <Footer/>
         </Page>
