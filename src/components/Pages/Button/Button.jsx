@@ -16,7 +16,7 @@ const ButtonG = styled.button`
 
 export default function Button(props){
     return(
-        <ButtonG>{props.title}</ButtonG>
+        <ButtonG onClick={props.action}>{props.title}</ButtonG>
     )
     
 }
