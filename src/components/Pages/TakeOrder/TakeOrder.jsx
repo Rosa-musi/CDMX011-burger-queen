@@ -75,22 +75,22 @@ export default function TakeOrder () {
 
     function handleChangeWaiter (e) {
         const { value } = e.target;
-        return(
-            setWaiter(value)
-        )
+        setWaiter(value)
     }
 
     function handleChangeCustomer (e) {
         const { value } = e.target;
-        return(
-            setCustomer(value)
-        )
+        setCustomer(value)
     }
 
     function goToMenu () {
         if (waiter == "" || customer == ""){
             alert("Enter waiter and customer's name please")
         } 
+    }
+
+    function restartOrder () {
+        setCustomer("")
     }
 
     return (
@@ -121,7 +121,8 @@ export default function TakeOrder () {
                     >
                         <Button title="create"/>
                     </Link>
-                    <Link to="/takeOrder"><Button title="delete"/></Link>
+                    <Button title="delte" action={restartOrder}/>
+                    {/* <Link to="/takeOrder"><Button title="delete"/></Link> */}
                 </ButtonsDiv>
             </DataDiv>
         </Main>
