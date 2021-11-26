@@ -22,11 +22,12 @@ const TitleButton = styled.p`
 `
 
 
-export default function OptionsButton({title, price, handler}) {
+export default function OptionsButton(props) {
+
     return(
-        <BorderButton onClick={(handler)}>
-            <TitleButton>{title}</TitleButton>
-            <TitleButton style={{marginTop: "10px"}}>{price}</TitleButton>
+        <BorderButton onClick={(props.handler)}>
+            <TitleButton>{props.title}</TitleButton>
+            <TitleButton style={{marginTop: "10px"}}>${props.price}</TitleButton>
         </BorderButton>
     )
 }
