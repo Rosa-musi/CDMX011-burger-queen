@@ -35,12 +35,26 @@ const Title = styled.h2`
     width: fit-content;
     border-bottom: 3px solid ${colors.yellow};
 `
+const Separator = styled.div`
+    width: 95%;
+    height: 2px;
+    color: black;
+    background-color: black;
+    margin: 15px 0;
+`
+const TotalDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+`
+const Total = styled.p`
+    font-size: 18px;
+    font-weight: bold;
+`
 
 const Menu = () => {
 
     const {customer, breakfast, setBreakfast, lunch, setLunch, orderItems} = useContext(orderContext);
-
-    //cuando pulse breakfast o lunche por medio de propos hago que el style del componente sea flex y seteo el menu contrario a ""
 
     function handleBreakfast () {
         setBreakfast("flex")
@@ -66,6 +80,12 @@ const Menu = () => {
             <OrderDiv>
                 <Title>{customer}</Title>
                 <OrderList list={orderItems}/>
+                <Separator/>
+                <TotalDiv>
+                    <Total>Total</Total>
+                    <Total>$35</Total>
+                </TotalDiv>
+                
             </OrderDiv>
 
         </Main>

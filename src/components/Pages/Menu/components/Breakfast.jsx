@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import styled from 'styled-components'
 
 import OptionsButton from './OptionsButton'
 import {orderContext} from '../../../../context/OrderContext'
 
 import colors from '../../../../styles/colors'
+import {desayunoBebidas, desayunoComidas} from '../../../../context/menú'
 
 const BreakfastDiv = styled.div`
     width: 100%;
@@ -31,26 +32,22 @@ export default function Breakfast({on}) {
 
     const {orderItems, setOrderItems} = useContext(orderContext);
 
-    function handleOrderItems (e) {
-/*         setOrderItems([
-            ...orderItems,
-            e.title
-        ]) */
-
-        console.log(e.target)
+    function orderListHandler(productOrder) {
+        setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item}])
+        console.log(orderItems)
     }
 
     return(
         <BreakfastDiv style={{display: on}}>
             <Title>Para tomar</Title>
             <CategoryDiv>
-                <OptionsButton handler={handleOrderItems} title="Café americano" price="$5.00"/>
-                <OptionsButton handler={handleOrderItems} title="Café con leche" price="$7.00"/>
-                <OptionsButton handler={handleOrderItems} title="Jugo de frutas natural" price="$7.00"/>
+             {desayunoBebidas.map((product) => {
+                 return <OptionsButton key={product.id} title={product.item} price={product.price} handler={()=>orderListHandler(product)}/>
+             })}   
             </CategoryDiv>
             <Title>Sandwiches</Title>
             <CategoryDiv>
-                <OptionsButton handler={handleOrderItems} title="Sandwich de jamón y queso" price="$10.00"/>
+                <OptionsButton key={desayunoComidas.id} title={desayunoComidas.item} price={desayunoComidas.price} handler={()=>orderListHandler(desayunoComidas)}/>
             </CategoryDiv>
         </BreakfastDiv>
     )

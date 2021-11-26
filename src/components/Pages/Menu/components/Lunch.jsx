@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 
 import OptionsButton from './OptionsButton'
+import {orderContext} from '../../../../context/OrderContext'
 
 import colors from '../../../../styles/colors'
+import {comidasBebidas, comidasHamburguesas, comidasAcompañamientos, comidasExtras} from '../../../../context/menú'
 
 const LunchDiv = styled.div`
     width: 100%;
@@ -27,29 +29,39 @@ const Title = styled.h2`
 `
 
 export default function Lunch({on}) {
+
+    const {orderItems, setOrderItems} = useContext(orderContext);
+
+    function orderListHandler(productOrder) {
+        setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item}])
+        console.log(orderItems)
+    }
+
     return(
         <LunchDiv style={{display: on}}>
             <Title>Para tomar</Title>
             <CategoryDiv>
-                <OptionsButton title="Agua 500ml" price="$5.00"/>
-                <OptionsButton title="Agua 750mml" price="$7.00"/>
-                <OptionsButton title="Bebida/gaseosa 500ml" price="$7.00"/>
-                <OptionsButton title="Bebida/gaseosa 700ml" price="$10.00"/>
+                {comidasBebidas.map((product) => {
+                    return <OptionsButton key={product.id} title={product.item} price={product.price} handler={() => orderListHandler(product)}/>
+                })}  
             </CategoryDiv>
             <Title>Hamburguesas</Title>
             <CategoryDiv>
-                <OptionsButton title="Hamburguesa simple" price="$10.00"/>
-                <OptionsButton title="Hamburguesa doble" price="$15.00"/>
+                {comidasHamburguesas.map((product) => {
+                    return <OptionsButton key={product.id} title={product.item} price={product.price} handler={() => orderListHandler(product)}/>
+                })}  
             </CategoryDiv>
             <Title>Acompañamientos</Title>
             <CategoryDiv>
-                <OptionsButton title="Papas fritas" price="$5.00"/>
-                <OptionsButton title="Aros de cebolla" price="$5.00"/>
+                {comidasAcompañamientos.map((product) => {
+                    return <OptionsButton key={product.id} title={product.item} price={product.price} handler={() => orderListHandler(product)}/>
+                })}  
             </CategoryDiv>
             <Title>Extras</Title>
             <CategoryDiv>
-                <OptionsButton title="Queso" price="$1.00"/>
-                <OptionsButton title="Huevo" price="$1.00"/>
+                {comidasExtras.map((product) => {
+                    return <OptionsButton key={product.id} title={product.item} price={product.price} handler={() => orderListHandler(product)}/>
+                })}  
             </CategoryDiv>
         </LunchDiv>
     )

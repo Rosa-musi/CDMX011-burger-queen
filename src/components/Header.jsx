@@ -86,7 +86,7 @@ const Separator = styled.span`
 `
 export default function Header () {
 
-    const { waiter, setWaiter } = useContext(orderContext)
+    const { waiter } = useContext(orderContext)
    console.log(window.location)
     return (
         <BqHeader>

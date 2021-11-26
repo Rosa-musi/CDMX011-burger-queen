@@ -15,7 +15,7 @@ export const OrderProvider = (props) => {
     const [breakfast, setBreakfast] = useState("")
 
     // Order items
-    const [orderItems, setOrderItems] = useState(["coca", "papas"])
+    const [orderItems, setOrderItems] = useState([])
 
     console.log(waiter)
   

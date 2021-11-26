@@ -31,7 +31,7 @@ const Title = styled.h2`
 `
 
 const Label = styled.label`
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
 `
 const SelectWaiter = styled.select`
@@ -49,6 +49,7 @@ const InputCustomer = styled.input`
     border-radius: 10px;
     width: 200px;
     height: 25px;
+    font-size: 15px;
     border: 1px solid black;
 `
 const DataDiv = styled.div`
@@ -121,8 +122,7 @@ export default function TakeOrder () {
                     >
                         <Button title="create"/>
                     </Link>
-                    <Button title="delte" action={restartOrder}/>
-                    {/* <Link to="/takeOrder"><Button title="delete"/></Link> */}
+                    <Button title="delete" action={restartOrder}/>
                 </ButtonsDiv>
             </DataDiv>
         </Main>
