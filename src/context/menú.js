@@ -52,40 +52,62 @@ export const comidasHamburguesas =
     [
         {
             id: "9",
-            item: "Hamburguesa simple", 
+            item: "Simple res", 
             price: "10.00"
         },
         {
             id: "10",
-            item: "Hamburguesa doble", 
+            item: "Simple pollo", 
+            price: "10.00"
+        },
+        {
+            id: "11",
+            item: "Simple vegetariana", 
+            price: "10.00"
+        },
+        {
+            id: "12",
+            item: "Doble res", 
             price: "15.00"
+        },
+        {
+            id: "13",
+            item: "Doble pollo", 
+            price: "15.00"
+        },
+        {
+            id: "14",
+            item: "Doble vegetariana", 
+            price: "15.00"
+        }
+    ]
+
+export const extrasHamburguesas =
+    [
+        {
+            id: "15",
+            item: "Huevo", 
+            price: "1.00"
+        },
+        {
+            id: "16",
+            item: "Queso", 
+            price: "1.00"
         }
     ]
 
 export const comidasAcompañamientos =
     [
         {
-            id: "11",
+            id: "19",
             item: "Papas fritas",
             price: "5.00"
         },
         {
-            id: "12",
+            id: "20",
             item: "Aros de cebolla",
             price: "5.00"
         }
     ]
 
-export const comidasExtras = 
-    [
-        {
-            id: "13",
-            item: "Queso", 
-            price: "1.00"
-        },
-        {
-            id: "14",
-            item: "Huevo", 
-            price: "1.00"
-        }
-    ]
+
