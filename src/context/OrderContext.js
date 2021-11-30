@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect } from 'react'
+import React, {createContext, useState } from 'react'
 
 export const orderContext = createContext();
 
@@ -14,13 +14,28 @@ export const OrderProvider = (props) => {
     const [lunch, setLunch] = useState("");
     const [breakfast, setBreakfast] = useState("")
 
+    // Hamburger extras
+    const [hambExtra, setHambExtra] = useState("")
+
     // Order items
     const [orderItems, setOrderItems] = useState([])
 
     console.log(waiter)
   
     return (
-        <orderContext.Provider value={{waiter, setWaiter,customer, setCustomer, breakfast, setBreakfast, lunch, setLunch, orderItems, setOrderItems}}>
+        <orderContext.Provider value={{
+        waiter, 
+        setWaiter,
+        customer, 
+        setCustomer, 
+        breakfast, 
+        setBreakfast, 
+        lunch, 
+        setLunch, 
+        orderItems, 
+        setOrderItems,
+        hambExtra, 
+        setHambExtra}}>
             {props.children}
         </orderContext.Provider>
     )
