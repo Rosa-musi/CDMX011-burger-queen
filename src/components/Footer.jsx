@@ -71,7 +71,7 @@ export default function Footer() {
                         setOrderList("")
                     }}
                 >
-                    <Button title="log out"/>
+                    <Button title="log out" visibility="visible"/>
                 </Link>
             </FooterContent>
         </FooterTag>
