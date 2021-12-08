@@ -64,6 +64,9 @@ const WaiterName = styled.p`
     font-weight: bold;
 `
 const ReadyOrderMessege = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 25px;
     height: 25px;
     border: 2px solid black;
@@ -86,27 +89,55 @@ const Separator = styled.span`
 `
 export default function Header () {
 
-    const { waiter } = useContext(orderContext)
+    const { waiter, orderBut, setOrderBut, menuBut, setMenuBut, customer, ready} = useContext(orderContext)
    console.log(window.location)
+
+   const handleLogoClick = () => {
+        if (customer == ""){
+            setMenuBut("hidden")
+            setOrderBut("visible")
+        } else {
+            setMenuBut("visible")
+            setOrderBut("visible")
+        }
+
+   }
+
+   const handleOrdersButton = () => {
+    setMenuBut("visible")
+    setOrderBut("hidden")
+   }
+
+   const handleMenuButton = () => {
+    setMenuBut("hidden")
+    setOrderBut("visible")
+   }
+
+   const handleButtonsHeader = () => {
+    setMenuBut("visible")
+    setOrderBut("visible")
+    }
     return (
         <BqHeader>
             <MainHeader>
                 <TitleDiv>
-                    <Link to="/"><Logo src={icon}/></Link>
+                    <Link to="/"><Logo src={icon} onClick={handleLogoClick}/></Link>
                     <Title><CapLetTitle>B</CapLetTitle>urger <CapLetTitle>Q</CapLetTitle>ueen</Title>
                     <ArrowImg src={arrow}/>
                 </TitleDiv>
                 <MenuDiv
                     style={{display: waiter === "" ? "none" : "flex"}}
                 >
-                    <WaiterNameDiv>
-                        <ReadyOrderMessege></ReadyOrderMessege>
+                    <Link to="/readyOrders">
+                    <WaiterNameDiv onClick={handleButtonsHeader}>
+                        <ReadyOrderMessege style={{backgroundColor: ready === 0 ? colors.green : colors.red}} >{ready == 0 ? "" : ready}</ReadyOrderMessege>
                         <WaiterName>{waiter}</WaiterName>
                     </WaiterNameDiv>
+                    </Link>
                     <ButtonsDiv>
-                        <Link to="/orders"><Button title="orders"/></Link>
-                        <Link to="/menu"  /* style={{visibility: window.location.href === window.location.origin + "/orders" ? 'visible' : 'hidden' } }*/
-                        ><Button title="menu"/></Link> 
+                        <Link to="/orders" ><Button visibility={orderBut} title="orders" action={handleOrdersButton}/></Link>
+                        <Link to="/menu" 
+                        ><Button visibility={menuBut} title="menu" action={handleMenuButton}/></Link> 
                     </ButtonsDiv>
                 </MenuDiv>
             </MainHeader>
