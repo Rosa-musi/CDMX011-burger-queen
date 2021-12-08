@@ -6,7 +6,7 @@ import OptionsButton from './OptionsButton'
 
 import {orderContext} from '../../../../context/OrderContext'
 import colors from '../../../../styles/colors'
-import {comidasBebidas, comidasHamburguesas, comidasAcompañamientos, comidasExtras, extrasHamburguesas} from '../../../../context/menú'
+import {comidasBebidas, comidasHamburguesas, comidasAcompañamientos, comidasHamburguesasAndExtras, extrasHamburguesas} from '../../../../context/menú'
 
 const LunchDiv = styled.div`
     width: 100%;
@@ -33,7 +33,7 @@ const ExtrasDiv = styled.div`
     flex-direction: column;
     width: 90%;
     height: fit-content;
-    border: 2px black ${colors.orange};
+    border: 2px solid ${colors.orange};
     border-radius: 10px;
 `
 const ButtonsDiv = styled.div`
@@ -50,29 +50,56 @@ const Text = styled.p`
 export default function Lunch({on}) {
 
     
-    const {orderItems, setOrderItems, hambExtras, setHambExtras} = useContext(orderContext);
+    const {orderItems, setOrderItems, incrementOrder} = useContext(orderContext);
     const [optionsView, setOptionsView] = useState("none")
+    /* const [extrasHamburguer, setExtrasHamburguer] = useState()
+    const [extras, setExtras] = useState() */
 
     function orderListHandler(productOrder) {
         if(optionsView === "flex"){
             alert("por favor selecciona extras de hamburguesa antes de elgir otro platillo")
-        } else {
-            setOrderItems([...orderItems, {id: orderItems.length + 1, price: productOrder.price, item: productOrder.item}])
+        } else if (orderItems.some(e => e.id === productOrder.id)){
+            incrementOrder(productOrder.id)
+        }  else {
+            setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item, cuantity: 1}])
             console.log(orderItems)
         }
+
     }
 
     function hamburgerHanler(productOrder) {
         setOptionsView("flex")
-        setOrderItems([...orderItems, {id: orderItems.length + 1, price: productOrder.price, item: productOrder.item}])
-        console.log(orderItems)
+        if (orderItems.some(e => e.id === productOrder.id)){
+            incrementOrder(productOrder.id)
+        }  else {
+            setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item, cuantity: 1}])
+            console.log(orderItems)
+        }
     }
 
     function setExtrasHandler(productOrder) {
-        setOrderItems([...orderItems, {id: orderItems.length + 1, price: productOrder.price, item: productOrder.item}])
+        setOrderItems([...orderItems, {id: productOrder.id += .1, price: productOrder.price, item: productOrder.item, cuantity: 1}])
         setOptionsView("none")
-        console.log(orderItems)
     }
+
+/*     function hamburgerHanler(productOrder) {
+        setOptionsView("flex")
+        setExtrasHamburguer({id: productOrder.id, price: productOrder.price, item: productOrder.item, cuantity: 1})
+    }
+
+    function setExtrasHandler(productOrder) {
+         if (productOrder.item === "Queso"){
+             setExtras(comidasHamburguesasAndExtras.filter(e => e.id == parseInt(extrasHamburguer.id) + 1))
+             setOrderItems([...orderItems, extras])
+        } else if (productOrder.item == "Huevo"){
+            setOrderItems([...orderItems, comidasHamburguesasAndExtras.filter(e => e.id == parseInt(extrasHamburguer.id) + 2)])
+        } else {
+            setOrderItems([...orderItems, extrasHamburguer])
+        } 
+        console.log(orderItems)
+        setOptionsView("none")
+    }  */
+    
     
 
     return(
@@ -94,7 +121,7 @@ export default function Lunch({on}) {
                         {extrasHamburguesas.map((product) => {
                             return <OptionsButton key={product.id} title={product.item} price={product.price} handler={()=>setExtrasHandler(product)}/>
                         })} 
-                        <OptionsButton title="no" handler={()=>setOptionsView("none")}/>
+                        <OptionsButton title="no" handler={() => setOptionsView("none")}/>
                     </ButtonsDiv>
                 </ExtrasDiv>
             </CategoryDiv>

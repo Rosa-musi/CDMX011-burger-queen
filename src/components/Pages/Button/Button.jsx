@@ -12,11 +12,12 @@ const ButtonG = styled.button`
     color: ${colors.nude};
     font-size: 20px;
     cursor: pointer;
+    visibility: hidden;
 `
 
 export default function Button(props){
     return(
-        <ButtonG onClick={props.action}>{props.title}</ButtonG>
+        <ButtonG style={{visibility: props.visibility}} onClick={props.action}>{props.title}</ButtonG>
     )
     
 }

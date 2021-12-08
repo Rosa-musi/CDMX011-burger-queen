@@ -1,10 +1,14 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
+import {db} from '../../../firebase/firebase-config'
+import {collection, addDoc} from 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 import LuchDinnerButton from './components/LunchDinnerButton'
 import Breakfast from './components/Breakfast'
 import Lunch from './components/Lunch'
 import OrderList from './components/OrderList'
+import Button from '../Button/Button'
 
 import sandwichIcon from '../../../images/svg/sandwich.svg'
 import hambIcon from '../../../images/svg/hamburger-solid.svg'
@@ -51,10 +55,17 @@ const Total = styled.p`
     font-size: 18px;
     font-weight: bold;
 `
+const HandleOrderList = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: fit-content;
+    margin: 40px 15px;
+`
 
 const Menu = () => {
 
-    const {customer, breakfast, setBreakfast, lunch, setLunch, orderItems} = useContext(orderContext);
+    const {customer, setCustomer, breakfast, setBreakfast, lunch, setLunch, total, orderItems, setOrderItems, deleteItem, incrementOrder, decrementOrder, waiter} = useContext(orderContext);
 
     function handleBreakfast () {
         setBreakfast("flex")
@@ -66,6 +77,19 @@ const Menu = () => {
         setLunch("flex")
     }
 
+    const saveOrder = (client, waiter, date, order) => {
+        addDoc(collection(db, "orders"), {
+            client,
+            waiter,
+            date,
+            status: "pendant",
+            order,
+        })
+        setCustomer("")
+    }
+
+    const today = new Date()
+    const dateToday = today.toDateString();
 
     return(
         <Main>
@@ -79,13 +103,20 @@ const Menu = () => {
             </MenuDiv>
             <OrderDiv>
                 <Title>{customer}</Title>
-                <OrderList list={orderItems}/>
+                <ol>
+                    {orderItems.map(item =>{
+                        return <OrderList incrementOrder={incrementOrder} decrementOrder={decrementOrder} deleteItem={deleteItem} key={item.id} id={item.id} cuantity={item.cuantity} item={item.item} price={item.price} />
+                    })}
+                </ol>
                 <Separator/>
                 <TotalDiv>
                     <Total>Total</Total>
-                    <Total>$35</Total>
+                    <Total>${total}</Total>
                 </TotalDiv>
-                
+                <HandleOrderList>
+                    <Link to="/takeOrder"><Button title="send" action={()=>saveOrder(customer, waiter, dateToday, orderItems )} visibility="visible"/></Link>
+                    <Button title="delete" action={() => setOrderItems([])} visibility="visible"/>
+                </HandleOrderList>
             </OrderDiv>
 
         </Main>

@@ -52,7 +52,7 @@ const Rights = styled.p`
 
 export default function Footer() {
 
-    const { waiter, setWaiter, setCustomer } = useContext(orderContext)
+    const { waiter, setWaiter, setCustomer, setOrderList } = useContext(orderContext)
 
     return(
         <FooterTag>
@@ -68,6 +68,7 @@ export default function Footer() {
                     onClick={()=>{
                         setWaiter("")
                         setCustomer("")
+                        setOrderList("")
                     }}
                 >
                     <Button title="log out"/>

@@ -30,11 +30,15 @@ const Title = styled.h2`
 
 export default function Breakfast({on}) {
 
-    const {orderItems, setOrderItems} = useContext(orderContext);
+    const {orderItems, setOrderItems, incrementOrder} = useContext(orderContext);
 
     function orderListHandler(productOrder) {
-        setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item}])
-        console.log(orderItems)
+        if (orderItems.some(e => e.id === productOrder.id)){
+            incrementOrder(productOrder.id)
+        }  else {
+            setOrderItems([...orderItems, {id: productOrder.id, price: productOrder.price, item: productOrder.item, cuantity: 1}])
+            console.log(orderItems)
+        }
     }
 
     return(

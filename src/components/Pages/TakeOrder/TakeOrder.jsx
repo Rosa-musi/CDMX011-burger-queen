@@ -120,9 +120,9 @@ export default function TakeOrder () {
                         to={waiter == "" || customer == "" ? "/takeOrder" : "/menu"}
                         onClick={goToMenu}
                     >
-                        <Button title="create"/>
+                        <Button title="create" visibility="visible" />
                     </Link>
-                    <Button title="delete" action={restartOrder}/>
+                    <Button title="delete" action={restartOrder} visibility="visible"/>
                 </ButtonsDiv>
             </DataDiv>
         </Main>

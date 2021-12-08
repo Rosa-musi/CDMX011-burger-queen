@@ -14,6 +14,7 @@ import TakeOrder from './components/Pages/TakeOrder/TakeOrder'
 import KitchenList from './components/Pages/KitchenList/KitchenList';
 import WaiterOrders from './components/Pages/WaiterOrders/WaiterOrders';
 import Menu from './components/Pages/Menu/Menu'
+import ReadyOrders from './components/Pages/Ready/ReadyOrders'
 
 
 const Page = styled.body`
@@ -24,7 +25,6 @@ const Page = styled.body`
 
 function App() {
   return (
-    <>
     <Router>
       <OrderProvider>
         <Page>
@@ -33,6 +33,7 @@ function App() {
             <Route path="/" element={<Main/>} />
             <Route path="/takeOrder" element={<TakeOrder/>} />
             <Route path="/orders" element={<WaiterOrders/>}/>
+            <Route path="/readyOrders" element={<ReadyOrders/>}/>
             <Route path="/menu" element={<Menu/>}/>
             <Route path="/kitchenList" element={<KitchenList/>}/>
           </Routes>
@@ -40,7 +41,6 @@ function App() {
         </Page>
       </OrderProvider>
     </Router>
-    </>
   );
 }
 

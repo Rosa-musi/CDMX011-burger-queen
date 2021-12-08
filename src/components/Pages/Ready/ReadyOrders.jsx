@@ -45,8 +45,8 @@ const LiDiv = styled.div`
     margin: 5px;
 `
 
-const WaiterOrders = (props) => {
-    const {getOrders, setGetOrders} = useContext(orderContext);
+const ReadyOrders = () => {
+    const {getOrders, setGetOrders, waiter} = useContext(orderContext);
 
     useEffect(() => {
         const q = query(collection(db, "orders"), orderBy("date", "asc"))
@@ -60,18 +60,10 @@ const WaiterOrders = (props) => {
     }, []);
 
     
-    const updateStatus = async (id, status) => {
-        await updateDoc(doc(db, 'orders', id), {
-            status 
-        })
-    }
-
-   
     const archiveOrder = (order, id) => {
         addDoc(collection(db, 'archive'), {...order})
         deleteDoc(doc(db, 'orders', id));
     }
-    
     
     
 console.log(getOrders)
@@ -83,36 +75,40 @@ const ids = []
     return(
         <Main>
             {getOrders.map((order, i) => {
-                return(
-                    <OrderDiv key={i}>
-                        <Text space><Span>Client: </Span>{order.client}</Text>
-                        <Text space><Span>Waiter: </Span> {order.waiter}</Text>
-                        <Text space><Span>Date: </Span> {order.date}</Text>
-                        <Text space><Span>Status: </Span> {order.status}</Text>
-                        <Separator/>
-                        <Text space bold>Order:</Text>
-                        <ol>
-                            {order.order.map((itemOrder, ind) => {
-                                return(
-                                    <li key={ind}>
-                                        <LiDiv>
-                                            <Text marg>{itemOrder.cuantity}</Text>
-                                            <Text style={{marginLeft: "10px"}}>{itemOrder.item}</Text>
-                                            <Text>${itemOrder.price * itemOrder.cuantity}</Text>
-                                        </LiDiv>
-                                    </li>
-                                )
-                            })}
-                        </ol>
-                        <Button visibility={props.visibility} action={()=>updateStatus(order.id, "ready")} title={props.title}/>
-                        <Button visibility={props.visibility2} action={()=>archiveOrder(order, order.id)} title={props.title2}/>
-                    </OrderDiv> 
-                )
+                if (order.waiter === waiter) {
+                    if(order.status == "ready"){
+                        return(
+                            <OrderDiv key={i}>
+                                <Text space><Span>Client: </Span>{order.client}</Text>
+                                <Text space><Span>Waiter: </Span> {order.waiter}</Text>
+                                <Text space><Span>Date: </Span> {order.date}</Text>
+                                <Text space><Span>Status: </Span> {order.status}</Text>
+                                <Separator/>
+                                <Text space bold>Order:</Text>
+                                <ol>
+                                    {order.order.map((itemOrder, ind) => {
+                                        return(
+                                            <li key={ind}>
+                                                <LiDiv>
+                                                    <Text marg>{itemOrder.cuantity}</Text>
+                                                    <Text style={{marginLeft: "10px"}}>{itemOrder.item}</Text>
+                                                    <Text>${itemOrder.price * itemOrder.cuantity}</Text>
+                                                </LiDiv>
+                                            </li>
+                                        )
+                                    })}
+                                </ol>
+                                <Button visibility="visible" action={() => archiveOrder(order, order.id)} title="done"/>
+                            </OrderDiv> 
+                        )
+                    }
+                }
             })}
-         
         </Main>
     )
     
 }
 
-export default WaiterOrders
+export default ReadyOrders
+
+
