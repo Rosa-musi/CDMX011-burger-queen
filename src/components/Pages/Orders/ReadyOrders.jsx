@@ -1,49 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import {db} from '../../../firebase/firebase-config'
-import {collection, orderBy, onSnapshot, query, updateDoc, doc, addDoc, deleteDoc} from 'firebase/firestore'
+import {collection, orderBy, onSnapshot, query, doc, addDoc, deleteDoc} from 'firebase/firestore'
 
 import Button from '../Button/Button'
 
 import {orderContext} from '../../../context/OrderContext'
 
-
-const Main = styled.main`
-    display: flex;
-    flex-wrap: wrap;
-    width: 95%;
-    margin-left: 2.5%;
-`
-const OrderDiv = styled.div`
-    width: 30%;
-    height: fit-content;
-    border: solid 2px black;
-    margin: 20px;
-    border-radius: 15px;
-    padding: 10px;
-`
-const Text = styled.p`
-    font-size: 18px;
-    font-weight: ${props => props.bold ? "bold" : "unset"};
-    padding: ${props => props.space ? "5px" : "0"};
-`
-const Span = styled.span`
-    font-weight: bold;
-`
-const Separator = styled.div`
-    width: 95%;
-    height: 2px;
-    color: black;
-    background-color: black;
-    margin: 15px 0;
-`
-const LiDiv = styled.div`
-    display: grid;
-    grid-template-columns: 20px 1fr 60px;
-    width: 100%;
-    height: fit-content;
-    margin: 5px;
-`
+import { LiDiv, Separator, Span, Text, OrderDiv, Main } from './styles/styles'
 
 const ReadyOrders = () => {
     const {getOrders, setGetOrders, waiter} = useContext(orderContext);
